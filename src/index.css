@@ -52,3 +52,10 @@
     background-color: transparent;
     border-color: #198754;
 }
+
+#progress-bar {
+    margin-top: 15px;
+}
+.progress-bar[aria-valuenow="0"] {
+    transition: none !important;
+}
