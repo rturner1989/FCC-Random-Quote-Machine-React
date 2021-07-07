@@ -8,7 +8,6 @@
 
 #quote-box {
     width: 500px;
-    height: 277px;
     border: solid 2px #198754;
     border-radius: 5px;
     padding-top: 15px;
@@ -16,10 +15,25 @@
 }
 #quote-text {
     font-size: 1.2rem;
+    width: 100%;
+    height: 100%;
 }
 
 #auth-text {
     justify-self: end;
+}
+.loading-icon {
+    font-size: 3rem;
+    display: block;
+    animation: rotation 2s infinite linear;
+}
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
 }
 #quote-container {
     height: 80%;
@@ -38,11 +52,3 @@
     background-color: transparent;
     border-color: #198754;
 }
-/* #facebook-quote:hover {
-    color: white;
-    background-color: green;
-}
-#tweet-quote:hover {
-    color: white;
-    background-color: green;
-} */
