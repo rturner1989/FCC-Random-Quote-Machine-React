@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Container from "react-bootstrap/Container";
-import { Alert } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 import { ProgressBar } from "react-bootstrap";
 import { FaTwitter } from "react-icons/fa";
 import { FiCopy } from "react-icons/fi";
@@ -19,7 +19,6 @@ const QuoteBox = () => {
     const [author, setAuthor] = useState("");
     const [color, setColor] = useState("#198754");
     const [click, setClick] = useState(false);
-    const [alert, setAlert] = useState(false);
 
     const refQuote = useRef(null);
     const refAuthor = useRef(null);
