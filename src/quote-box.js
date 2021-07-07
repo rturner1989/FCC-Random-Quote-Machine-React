@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import { ProgressBar } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
-import { FaTwitter, FaFacebook } from "react-icons/fa";
+import { ProgressBar } from "react-bootstrap";
+import { FaTwitter } from "react-icons/fa";
+import { FiCopy } from "react-icons/fi";
 import { VscLoading } from "react-icons/vsc";
 
 const url = "https://goquotes-api.herokuapp.com/api/v1/all/quotes";
@@ -142,11 +143,11 @@ const QuoteBox = () => {
                         <FaTwitter />
                     </Button>
                     <Button
-                        id="facebook-quote"
-                        href="www.facebook.com"
+                        id="copy-quote"
+                        onClick={() => navigator.clipboard.writeText(quote)}
                         style={{ borderColor: color, color: color }}
                     >
-                        <FaFacebook />
+                        <FiCopy />
                     </Button>
                 </ButtonGroup>
 
