@@ -2,9 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Container from "react-bootstrap/Container";
+import { Alert } from "react-bootstrap";
 import { ProgressBar } from "react-bootstrap";
 import { FaTwitter } from "react-icons/fa";
 import { FiCopy } from "react-icons/fi";
+import { AiOutlineCheckCircle } from "react-icons/ai";
 import { VscLoading } from "react-icons/vsc";
 
 const url = "https://goquotes-api.herokuapp.com/api/v1/all/quotes";
@@ -16,6 +18,8 @@ const QuoteBox = () => {
     const [quote, setQuote] = useState("");
     const [author, setAuthor] = useState("");
     const [color, setColor] = useState("#198754");
+    const [click, setClick] = useState(false);
+    const [alert, setAlert] = useState(false);
 
     const refQuote = useRef(null);
     const refAuthor = useRef(null);
@@ -78,6 +82,14 @@ const QuoteBox = () => {
         );
     };
 
+    const handleClick = () => {
+        navigator.clipboard.writeText(quote);
+        setClick(true);
+        setTimeout(() => {
+            setClick(false);
+        }, 2000);
+    };
+
     useEffect(() => {
         urlFetch();
     }, []);
@@ -138,16 +150,17 @@ const QuoteBox = () => {
                     <Button
                         id="tweet-quote"
                         href="twitter.com/intent/tweet"
+                        target="_blank"
                         style={{ borderColor: color, color: color }}
                     >
                         <FaTwitter />
                     </Button>
                     <Button
                         id="copy-quote"
-                        onClick={() => navigator.clipboard.writeText(quote)}
+                        onClick={handleClick}
                         style={{ borderColor: color, color: color }}
                     >
-                        <FiCopy />
+                        {click ? <AiOutlineCheckCircle /> : <FiCopy />}
                     </Button>
                 </ButtonGroup>
 
@@ -187,6 +200,7 @@ const QuoteBox = () => {
                     max={88}
                 />
             </div>
+            {click ? <Alert className="alert">Copied!</Alert> : ""}
         </Container>
     );
 };
