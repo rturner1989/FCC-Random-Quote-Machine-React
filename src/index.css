@@ -1,0 +1,48 @@
+#wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+#quote-box {
+    width: 500px;
+    height: 277px;
+    border: solid 2px #198754;
+    border-radius: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+#quote-text {
+    font-size: 1.2rem;
+}
+
+#auth-text {
+    justify-self: end;
+}
+#quote-container {
+    height: 80%;
+    display: grid;
+    grid-template-rows: 80% 20%;
+}
+#btn-container {
+    display: flex;
+    justify-content: space-between;
+    height: 38px;
+    width: 100%;
+}
+#tweet-quote,
+#facebook-quote {
+    color: #198754;
+    background-color: transparent;
+    border-color: #198754;
+}
+/* #facebook-quote:hover {
+    color: white;
+    background-color: green;
+}
+#tweet-quote:hover {
+    color: white;
+    background-color: green;
+} */
