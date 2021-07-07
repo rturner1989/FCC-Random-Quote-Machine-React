@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import { ProgressBar } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import { FaTwitter, FaFacebook } from "react-icons/fa";
 import { VscLoading } from "react-icons/vsc";
@@ -10,6 +11,7 @@ const url = "https://goquotes-api.herokuapp.com/api/v1/all/quotes";
 const QuoteBox = () => {
     const [data, setData] = useState([]);
     const [loading, setloading] = useState(true);
+    const [timerProgress, setTimerProgress] = useState(100);
     const [quote, setQuote] = useState("");
     const [author, setAuthor] = useState("");
     const [color, setColor] = useState("#198754");
@@ -38,6 +40,7 @@ const QuoteBox = () => {
         setColor("#198754");
         animate(refAuthor);
         animate(refQuote);
+        setTimerProgress(0);
     };
 
     const shortQuote = () => {
@@ -49,6 +52,7 @@ const QuoteBox = () => {
         setColor("#0d6efd");
         animate(refAuthor);
         animate(refQuote);
+        setTimerProgress(0);
     };
 
     const longQuote = () => {
@@ -60,6 +64,7 @@ const QuoteBox = () => {
         setColor("#DC3545");
         animate(refAuthor);
         animate(refQuote);
+        setTimerProgress(0);
     };
 
     const animate = (element) => {
@@ -90,6 +95,17 @@ const QuoteBox = () => {
             clearInterval(timer);
         };
     }, [quote]);
+
+    useEffect(() => {
+        const barTimer = setInterval(() => {
+            setTimerProgress((state) => {
+                return state + 1;
+            });
+        }, 100);
+        return () => {
+            clearInterval(barTimer);
+        };
+    }, [timerProgress, quote]);
 
     return (
         <Container id="quote-box" style={{ borderColor: color }}>
@@ -161,6 +177,15 @@ const QuoteBox = () => {
                     </Button>
                 </ButtonGroup>
             </Container>
+            <div>
+                <ProgressBar
+                    id="progress-bar"
+                    animated
+                    now={timerProgress}
+                    min={0}
+                    max={88}
+                />
+            </div>
         </Container>
     );
 };
