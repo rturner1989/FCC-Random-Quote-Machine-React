@@ -47,7 +47,7 @@
     width: 100%;
 }
 #tweet-quote,
-#facebook-quote {
+#copy-quote {
     color: #198754;
     background-color: transparent;
     border-color: #198754;
@@ -55,6 +55,10 @@
 
 #progress-bar {
     margin-top: 15px;
+    height: 3px;
+    width: 437px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .progress-bar[aria-valuenow="0"] {
     transition: none !important;
