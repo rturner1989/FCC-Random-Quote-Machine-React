@@ -19,6 +19,7 @@ const QuoteBox = () => {
     const [author, setAuthor] = useState("");
     const [color, setColor] = useState("#198754");
     const [click, setClick] = useState(false);
+    const [carousel, setCarousel] = useState(null);
 
     const refQuote = useRef(null);
     const refAuthor = useRef(null);
@@ -45,30 +46,31 @@ const QuoteBox = () => {
         animate(refAuthor);
         animate(refQuote);
         setTimerProgress(0);
+        setCarousel("random");
     };
 
     const shortQuote = () => {
         const filter = data.filter((item) => item.text.split(" ").length <= 10);
         const { text, author } = filter[getNum(filter.length - 1)];
-
         setQuote(text);
         setAuthor(author);
         setColor("#0d6efd");
         animate(refAuthor);
         animate(refQuote);
         setTimerProgress(0);
+        setCarousel("short");
     };
 
     const longQuote = () => {
         const filter = data.filter((item) => item.text.split(" ").length > 20);
         const { text, author } = filter[getNum(filter.length - 1)];
-
         setQuote(text);
         setAuthor(author);
         setColor("#DC3545");
         animate(refAuthor);
         animate(refQuote);
         setTimerProgress(0);
+        setCarousel("long");
     };
 
     const animate = (element) => {
@@ -101,7 +103,19 @@ const QuoteBox = () => {
 
     useEffect(() => {
         const timer = setInterval(() => {
-            randomQuote();
+            switch (carousel) {
+                case "random":
+                    randomQuote();
+                    break;
+                case "short":
+                    shortQuote();
+                    break;
+                case "long":
+                    longQuote();
+                    break;
+                default:
+                    randomQuote();
+            }
         }, 10000);
         return () => {
             clearInterval(timer);
