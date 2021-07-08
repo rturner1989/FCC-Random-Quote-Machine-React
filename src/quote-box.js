@@ -134,32 +134,90 @@ const QuoteBox = () => {
     }, [timerProgress, quote]);
 
     return (
-        <Container id="quote-box" style={{ borderColor: color }}>
-            <Container id="quote-container">
-                <div
-                    id="quote-text"
-                    className="d-flex justify-content-center align-items-end"
-                >
-                    <p id="text" ref={refQuote}>
-                        {loading ? (
-                            <VscLoading
-                                className="loading-icon"
-                                style={{ color: color }}
-                            />
-                        ) : (
-                            `"${quote}"`
-                        )}
-                    </p>
-                </div>
-                <div id="auth-text">
-                    <p id="author" ref={refAuthor}>
-                        {loading ? "" : `-${author}`}
-                    </p>
-                </div>
-            </Container>
+        <Container>
+            <Container id="quote-box" style={{ borderColor: color }}>
+                <Container id="quote-container">
+                    <div
+                        id="quote-text"
+                        className="d-flex justify-content-center align-items-end"
+                    >
+                        <p id="text" ref={refQuote}>
+                            {loading ? (
+                                <VscLoading
+                                    className="loading-icon"
+                                    style={{ color: color }}
+                                />
+                            ) : (
+                                `"${quote}"`
+                            )}
+                        </p>
+                    </div>
+                    <div id="auth-text">
+                        <p id="author" ref={refAuthor}>
+                            {loading ? "" : `-${author}`}
+                        </p>
+                    </div>
+                </Container>
 
-            <Container id="btn-container">
-                <ButtonGroup id="link-group">
+                <Container id="btn-container">
+                    <ButtonGroup id="link-group-one">
+                        <Button
+                            id="tweet-quote"
+                            href="twitter.com/intent/tweet"
+                            target="_blank"
+                            style={{ borderColor: color, color: color }}
+                        >
+                            <FaTwitter />
+                        </Button>
+                        <Button
+                            id="copy-quote"
+                            onClick={handleClick}
+                            style={{ borderColor: color, color: color }}
+                        >
+                            {click ? <AiOutlineCheckCircle /> : <FiCopy />}
+                        </Button>
+                    </ButtonGroup>
+
+                    <ButtonGroup id="quote-select-one" className="btn-group">
+                        <Button
+                            variant="outline-success"
+                            id="new-quote"
+                            onClick={randomQuote}
+                            disabled={loading}
+                        >
+                            New Quote
+                        </Button>
+                        <Button
+                            variant="outline-primary"
+                            id="short-quote"
+                            onClick={shortQuote}
+                            disabled={loading}
+                        >
+                            Short Quote
+                        </Button>
+                        <Button
+                            variant="outline-danger"
+                            id="long-quote"
+                            onClick={longQuote}
+                            disabled={loading}
+                        >
+                            Long Quote
+                        </Button>
+                    </ButtonGroup>
+                </Container>
+                <div>
+                    <ProgressBar
+                        id="progress-bar"
+                        animated
+                        now={timerProgress}
+                        min={0}
+                        max={88}
+                    />
+                </div>
+                {click ? <Alert className="alert">Copied!</Alert> : ""}
+            </Container>
+            <Container id="btn-container-two">
+                <ButtonGroup id="link-group-two">
                     <Button
                         id="tweet-quote"
                         href="twitter.com/intent/tweet"
@@ -176,8 +234,7 @@ const QuoteBox = () => {
                         {click ? <AiOutlineCheckCircle /> : <FiCopy />}
                     </Button>
                 </ButtonGroup>
-
-                <ButtonGroup className="btn-group">
+                <ButtonGroup id="quote-select-two" className="btn-group">
                     <Button
                         variant="outline-success"
                         id="new-quote"
@@ -204,16 +261,6 @@ const QuoteBox = () => {
                     </Button>
                 </ButtonGroup>
             </Container>
-            <div>
-                <ProgressBar
-                    id="progress-bar"
-                    animated
-                    now={timerProgress}
-                    min={0}
-                    max={88}
-                />
-            </div>
-            {click ? <Alert className="alert">Copied!</Alert> : ""}
         </Container>
     );
 };

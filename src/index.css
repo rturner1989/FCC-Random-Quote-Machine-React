@@ -7,7 +7,7 @@
 }
 
 #quote-box {
-    width: 500px;
+    max-width: 500px;
     border: solid 2px #198754;
     border-radius: 5px;
     padding-top: 15px;
@@ -54,12 +54,13 @@
     color: #198754;
     background-color: transparent;
     border-color: #198754;
+    width: 40px;
 }
 
 #progress-bar {
     margin-top: 15px;
     height: 3px;
-    width: 437px;
+    max-width: 437px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -72,4 +73,39 @@
     height: 1.5rem;
     font-family: "Harmattan", sans-serif;
     font-size: 1.5rem;
+}
+#quote-select-two {
+    display: none;
+}
+#link-group-two {
+    display: none;
+}
+
+@media only screen and (max-width: 520px) {
+    #wrapper {
+        padding: 10px;
+    }
+    #btn-container-two {
+        padding-top: 50px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    #quote-select-one {
+        display: none;
+    }
+    #quote-select-two {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    #link-group-one {
+        display: none;
+    }
+    #link-group-two {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 10px;
+    }
 }
